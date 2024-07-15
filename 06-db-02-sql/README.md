@@ -57,6 +57,20 @@ kuliaev-db=# \l+
 (5 rows)
 
 ```
+```
+test_db=> \d+ orders
+                                                        Table "public.orders"
+   Column   |     Type      | Collation | Nullable |                 Default                  | Storage | Stats target | Description 
+------------+---------------+-----------+----------+------------------------------------------+---------+--------------+-------------
+ order_id   | integer       |           | not null | nextval('orders_order_id_seq'::regclass) | plain   |              | 
+ client_id  | integer       |           | not null |                                          | plain   |              | 
+ order_date | date          |           | not null |                                          | plain   |              | 
+ amount     | numeric(10,2) |           | not null |                                          | main    |              | 
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (order_id)
+Access method: heap
+
+```
 
 ## Задача 3
 
