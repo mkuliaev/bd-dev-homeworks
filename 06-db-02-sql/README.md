@@ -12,6 +12,30 @@
 
 Приведите получившуюся команду или docker-compose-манифест.
 
+```
+version: '3.8'
+
+services:
+  db:
+    image: postgres:12
+    container_name: postgres12
+    environment:
+      POSTGRES_USER: kuliaev
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: kuliaev-db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - db_backups:/backups
+
+volumes:
+  db_data:
+  db_backups:
+
+```
+```
+docker exec -it postgres12 psql -U kuliaev -d kuliaev-db
+```
+
 ## Задача 2
 
 В БД из задачи 1: 
