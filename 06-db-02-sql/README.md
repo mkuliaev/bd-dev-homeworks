@@ -71,6 +71,20 @@ Indexes:
 Access method: heap
 
 ```
+```
+
+test_db=>  \d+ clients
+                                                               Table "public.clients"
+    Column     |          Type          | Collation | Nullable |                  Default                   | Storage  | Stats target | Description 
+---------------+------------------------+-----------+----------+--------------------------------------------+----------+--------------+-------------
+ client_id     | integer                |           | not null | nextval('clients_client_id_seq'::regclass) | plain    |              | 
+ client_name   | character varying(100) |           | not null |                                            | extended |              | 
+ contact_email | character varying(100) |           |          |                                            | extended |              | 
+Indexes:
+    "clients_pkey" PRIMARY KEY, btree (client_id)
+Access method: heap
+
+```
 
 ## Задача 3
 
