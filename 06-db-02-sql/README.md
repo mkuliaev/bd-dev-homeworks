@@ -1,10 +1,5 @@
 # Домашнее задание к занятию 2. «SQL»
 
-## Введение
-
-Перед выполнением задания вы можете ознакомиться с 
-[дополнительными материалами](https://github.com/netology-code/virt-homeworks/blob/virt-11/a docker exec -it psql bashdditional/README.md).
-
 ## Задача 1
 
 Используя Docker, поднимите инстанс PostgreSQL (версию 12) c 2 volume, 
