@@ -109,6 +109,32 @@ Indexes:
 Access method: heap
 
 ```
+```
+test_db=> SELECT grantee, table_catalog, table_schema, table_name, privilege_type
+FROM information_schema.role_table_grants
+WHERE table_catalog = 'test_db';
+     grantee     | table_catalog | table_schema | table_name | privilege_type 
+-----------------+---------------+--------------+------------+----------------
+ test_admin_user | test_db       | public       | orders     | INSERT
+ test_admin_user | test_db       | public       | orders     | SELECT
+ test_admin_user | test_db       | public       | orders     | UPDATE
+ test_admin_user | test_db       | public       | orders     | DELETE
+ test_admin_user | test_db       | public       | orders     | TRUNCATE
+ test_admin_user | test_db       | public       | orders     | REFERENCES
+ test_admin_user | test_db       | public       | orders     | TRIGGER
+ test_admin_user | test_db       | public       | clients    | INSERT
+ test_admin_user | test_db       | public       | clients    | SELECT
+ test_admin_user | test_db       | public       | clients    | UPDATE
+ test_admin_user | test_db       | public       | clients    | DELETE
+ test_admin_user | test_db       | public       | clients    | TRUNCATE
+ test_admin_user | test_db       | public       | clients    | REFERENCES
+ test_admin_user | test_db       | public       | clients    | TRIGGER
+(14 rows)
+
+test_db=> 
+```
+
+
 
 ## Задача 3
 
