@@ -163,6 +163,35 @@ test_db=>
     - запросы,
     - результаты их выполнения.
 
+```
+test_db=# SELECT COUNT(*) AS Количество_записей_orders FROM orders;
+ Количество_записей_orders 
+---------------------------
+                         5
+(1 row)
+
+test_db=# SELECT COUNT(*) AS Количество_записей_clients FROM clients;
+ Количество_записей_clients 
+----------------------------
+                          5
+(1 row)
+
+test_db=# SELECT COUNT(*) AS order_count FROM orders;
+ order_count 
+-------------
+           5
+(1 row)
+
+test_db=# SELECT COUNT(*) AS client_count FROM clients;
+ client_count 
+--------------
+            5
+(1 row)
+
+
+```
+
+
 ## Задача 4
 
 Часть пользователей из таблицы clients решили оформить заказы из таблицы orders.
