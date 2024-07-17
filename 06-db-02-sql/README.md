@@ -186,7 +186,6 @@ INSERT 0 5
 
 
 ```
-```
 
 ```
 test_db=# SELECT COUNT(*) AS Количество_записей_orders FROM orders;
