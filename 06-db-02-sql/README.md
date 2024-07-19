@@ -312,6 +312,7 @@ kuliaev-db=# \l
 (5 rows)
 
 kuliaev-db=# cat /home/kuliaev/backups/test_db_backup.sql | docker exec -i postgres12_new psql -U kuliaev -d test_db
+
 kuliaev-db-# \q
 
 
