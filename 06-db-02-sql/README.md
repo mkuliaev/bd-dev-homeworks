@@ -170,10 +170,6 @@ test_db=# INSERT INTO orders (наименование, цена) VALUES
 ('Монитор', 7000),
 ('Гитара', 4000);
 INSERT 0 5
-
-```
-
-```
 test_db=# INSERT INTO clients (фамилия, страна_проживания) VALUES
 ('Иванов Иван Иванович', 'USA'),
 ('Петров Петр Петрович', 'Canada'),
@@ -181,37 +177,23 @@ test_db=# INSERT INTO clients (фамилия, страна_проживания
 ('Ронни Джеймс Дио', 'Russia'),
 ('Ritchie Blackmore', 'Russia');
 INSERT 0 5
+test_db=# SELECT COUNT(*) FROM orders;
+ count 
+-------
+     5
+(1 row)
+
+test_db=# SELECT COUNT(*) FROM clients;
+ count 
+-------
+     5
+(1 row)
+
 
 
 ```
 
-```
-test_db=# SELECT COUNT(*) AS Количество_записей_orders FROM orders;
- Количество_записей_orders 
----------------------------
-                         5
-(1 row)
 
-test_db=# SELECT COUNT(*) AS Количество_записей_clients FROM clients;
- Количество_записей_clients 
-----------------------------
-                          5
-(1 row)
-
-test_db=# SELECT COUNT(*) AS order_count FROM orders;
- order_count 
--------------
-           5
-(1 row)
-
-test_db=# SELECT COUNT(*) AS client_count FROM clients;
- client_count 
---------------
-            5
-(1 row)
-
-
-```
 
 
 ## Задача 4
