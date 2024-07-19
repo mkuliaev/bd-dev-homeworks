@@ -312,19 +312,6 @@ kuliaev-db=# \l
 (5 rows)
 
 kuliaev-db=# cat /home/kuliaev/backups/test_db_backup.sql | docker exec -i postgres12_new psql -U kuliaev -d test_db
-kuliaev-db-# \l
-                                List of databases
-    Name    |  Owner  | Encoding |  Collate   |   Ctype    |  Access privileges  
-------------+---------+----------+------------+------------+---------------------
- kuliaev-db | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | 
- postgres   | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | 
- template0  | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | =c/kuliaev         +
-            |         |          |            |            | kuliaev=CTc/kuliaev
- template1  | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | =c/kuliaev         +
-            |         |          |            |            | kuliaev=CTc/kuliaev
- test_db    | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | 
-(5 rows)
-
 kuliaev-db-# \q
 
 
