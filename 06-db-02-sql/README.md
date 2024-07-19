@@ -20,15 +20,12 @@ services:
       POSTGRES_DB: kuliaev-db
     volumes:
       - db_data:/var/lib/postgresql/data
-      - db_backups:/backups
+      - /home/kuliaev/backups:/backups
 
 volumes:
   db_data:
-  db_backups:
 
-```
-```
-docker exec -it postgres12 psql -U kuliaev -d kuliaev-db
+
 ```
 
 ## Задача 2
@@ -62,48 +59,49 @@ docker exec -it postgres12 psql -U kuliaev -d kuliaev-db
 - список пользователей с правами над таблицами test_db.
 
 ```
-kuliaev-db=# \l+
-                                                                      List of databases
-    Name    |      Owner      | Encoding |  Collate   |   Ctype    |  Access privileges  |  Size   | Tablespace |                Description                 
-------------+-----------------+----------+------------+------------+---------------------+---------+------------+--------------------------------------------
- kuliaev-db | kuliaev         | UTF8     | en_US.utf8 | en_US.utf8 |                     | 7977 kB | pg_default | 
- postgres   | kuliaev         | UTF8     | en_US.utf8 | en_US.utf8 |                     | 7977 kB | pg_default | default administrative connection database
- template0  | kuliaev         | UTF8     | en_US.utf8 | en_US.utf8 | =c/kuliaev         +| 7833 kB | pg_default | unmodifiable empty database
-            |                 |          |            |            | kuliaev=CTc/kuliaev |         |            | 
- template1  | kuliaev         | UTF8     | en_US.utf8 | en_US.utf8 | =c/kuliaev         +| 7833 kB | pg_default | default template for new databases
-            |                 |          |            |            | kuliaev=CTc/kuliaev |         |            | 
- test_db    | test_admin_user | UTF8     | en_US.utf8 | en_US.utf8 |                     | 8065 kB | pg_default | 
+test_db=# \l
+                                    List of databases
+    Name    |      Owner      | Encoding |  Collate   |   Ctype    |  Access privileges  
+------------+-----------------+----------+------------+------------+---------------------
+ kuliaev-db | kuliaev         | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres   | kuliaev         | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0  | kuliaev         | UTF8     | en_US.utf8 | en_US.utf8 | =c/kuliaev         +
+            |                 |          |            |            | kuliaev=CTc/kuliaev
+ template1  | kuliaev         | UTF8     | en_US.utf8 | en_US.utf8 | =c/kuliaev         +
+            |                 |          |            |            | kuliaev=CTc/kuliaev
+ test_db    | test-admin-user | UTF8     | en_US.utf8 | en_US.utf8 | 
 (5 rows)
 
-```
-```
-test_db=> \d+ orders
-                                                        Table "public.orders"
-   Column   |     Type      | Collation | Nullable |                 Default                  | Storage | Stats target | Description 
-------------+---------------+-----------+----------+------------------------------------------+---------+--------------+-------------
- order_id   | integer       |           | not null | nextval('orders_order_id_seq'::regclass) | plain   |              | 
- client_id  | integer       |           | not null |                                          | plain   |              | 
- order_date | date          |           | not null |                                          | plain   |              | 
- amount     | numeric(10,2) |           | not null |                                          | main    |              | 
+test_db=# \d orders
+                                       Table "public.orders"
+    Column    |          Type          | Collation | Nullable |              Default               
+--------------+------------------------+-----------+----------+------------------------------------
+ id           | integer                |           | not null | nextval('orders_id_seq'::regclass)
+ наименование | character varying(255) |           |          | 
+ цена         | integer                |           |          | 
 Indexes:
-    "orders_pkey" PRIMARY KEY, btree (order_id)
-Access method: heap
+    "orders_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "clients" CONSTRAINT "clients_заказ_fkey" FOREIGN KEY ("заказ") REFERENCES orders(id)
 
-```
-```
-
-test_db=>  \d+ clients
-                                                               Table "public.clients"
-    Column     |          Type          | Collation | Nullable |                  Default                   | Storage  | Stats target | Description 
----------------+------------------------+-----------+----------+--------------------------------------------+----------+--------------+-------------
- client_id     | integer                |           | not null | nextval('clients_client_id_seq'::regclass) | plain    |              | 
- client_name   | character varying(100) |           | not null |                                            | extended |              | 
- contact_email | character varying(100) |           |          |                                            | extended |              | 
+test_db=# \d clients
+                                         Table "public.clients"
+      Column       |          Type          | Collation | Nullable |               Default               
+-------------------+------------------------+-----------+----------+-------------------------------------
+ id                | integer                |           | not null | nextval('clients_id_seq'::regclass)
+ фамилия           | character varying(255) |           |          | 
+ страна_проживания | character varying(255) |           |          | 
+ заказ             | integer                |           |          | 
 Indexes:
-    "clients_pkey" PRIMARY KEY, btree (client_id)
-Access method: heap
+    "clients_pkey" PRIMARY KEY, btree (id)
+    "idx_clients_country" btree ("страна_проживания")
+Foreign-key constraints:
+    "clients_заказ_fkey" FOREIGN KEY ("заказ") REFERENCES orders(id)
+
+
 
 ```
+
 ```
 test_db=> SELECT grantee, table_catalog, table_schema, table_name, privilege_type
 FROM information_schema.role_table_grants
