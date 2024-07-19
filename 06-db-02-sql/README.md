@@ -214,6 +214,36 @@ test_db=# SELECT COUNT(*) FROM clients;
  
 Подсказка: используйте директиву `UPDATE`.
 
+```
+test_db=# ALTER TABLE orders ADD COLUMN client_id INT;
+ALTER TABLE
+test_db=# UPDATE orders
+SET client_id = (SELECT id FROM clients WHERE фамилия = 'Иванов Иван Иванович')
+WHERE наименование = 'Книга';
+UPDATE 1
+test_db=# UPDATE orders
+SET client_id = (SELECT id FROM clients WHERE фамилия = 'Петров Петр Петрович')
+WHERE наименование = 'Монитор';
+UPDATE 1
+test_db=# UPDATE orders
+SET client_id = (SELECT id FROM clients WHERE фамилия = 'Иоганн Себастьян Бах')
+WHERE наименование = 'Гитара';
+UPDATE 1
+test_db=# SELECT clients.фамилия, orders.наименование
+FROM clients
+JOIN orders ON clients.id = orders.client_id;
+       фамилия        | наименование 
+----------------------+--------------
+ Иванов Иван Иванович | Книга
+ Петров Петр Петрович | Монитор
+ Иоганн Себастьян Бах | Гитара
+(3 rows)
+
+
+```
+
+
+
 ## Задача 5
 
 Получите полную информацию по выполнению запроса выдачи всех пользователей из задачи 4 
