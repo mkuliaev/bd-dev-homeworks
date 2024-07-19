@@ -251,6 +251,22 @@ JOIN orders ON clients.id = orders.client_id;
 
 Приведите получившийся результат и объясните, что значат полученные значения.
 
+```
+est_db=# EXPLAIN
+SELECT clients.фамилия, orders.наименование
+FROM clients
+JOIN orders ON clients.id = orders.client_id;
+                              QUERY PLAN                               
+-----------------------------------------------------------------------
+ Hash Join  (cost=11.57..23.35 rows=70 width=1032)
+   Hash Cond: (orders.client_id = clients.id)
+   ->  Seq Scan on orders  (cost=0.00..11.40 rows=140 width=520)
+   ->  Hash  (cost=10.70..10.70 rows=70 width=520)
+         ->  Seq Scan on clients  (cost=0.00..10.70 rows=70 width=520)
+(5 rows)
+
+```
+
 ## Задача 6
 
 Создайте бэкап БД test_db и поместите его в volume, предназначенный для бэкапов (см. задачу 1).
