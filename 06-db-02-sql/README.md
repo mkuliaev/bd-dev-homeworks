@@ -279,6 +279,58 @@ JOIN orders ON clients.id = orders.client_id;
 
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
 
+```
+kuliaev@sql:~/docker$ docker exec -t postgres12 pg_dump -U kuliaev -d test_db > /home/kuliaev/backups/test_db_backup.sql
+kuliaev@sql:~/docker$ docker-compose down
+[+] Running 2/2
+ ✔ Container postgres12    Removed                                                                                       0.2s 
+ ✔ Network docker_default  Removed                                                                                       0.1s 
+kuliaev@sql:~/docker$ cd
+kuliaev@sql:~$ cd docker1
+kuliaev@sql:~/docker1$ docker-compose up -d
+[+] Running 3/3
+ ✔ Network docker1_default   Created                                                                                     0.2s 
+ ✔ Volume "docker1_db_data"  Created                                                                                     0.0s 
+ ✔ Container postgres12_new  Started                                                                                     0.9s 
+kuliaev@sql:~/docker1$ docker exec -it postgres12_new psql -U kuliaev -d kuliaev-db
+psql (12.19 (Debian 12.19-1.pgdg120+1))
+Type "help" for help.
+
+kuliaev-db=# CREATE DATABASE test_db;
+CREATE DATABASE
+kuliaev-db=# \l
+                                List of databases
+    Name    |  Owner  | Encoding |  Collate   |   Ctype    |  Access privileges  
+------------+---------+----------+------------+------------+---------------------
+ kuliaev-db | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres   | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0  | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | =c/kuliaev         +
+            |         |          |            |            | kuliaev=CTc/kuliaev
+ template1  | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | =c/kuliaev         +
+            |         |          |            |            | kuliaev=CTc/kuliaev
+ test_db    | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | 
+(5 rows)
+
+kuliaev-db=# cat /home/kuliaev/backups/test_db_backup.sql | docker exec -i postgres12_new psql -U kuliaev -d test_db
+kuliaev-db-# \l
+                                List of databases
+    Name    |  Owner  | Encoding |  Collate   |   Ctype    |  Access privileges  
+------------+---------+----------+------------+------------+---------------------
+ kuliaev-db | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres   | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0  | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | =c/kuliaev         +
+            |         |          |            |            | kuliaev=CTc/kuliaev
+ template1  | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | =c/kuliaev         +
+            |         |          |            |            | kuliaev=CTc/kuliaev
+ test_db    | kuliaev | UTF8     | en_US.utf8 | en_US.utf8 | 
+(5 rows)
+
+kuliaev-db-# \q
+
+
+
+```
+
 ---
 
 
