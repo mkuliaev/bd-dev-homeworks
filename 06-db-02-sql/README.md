@@ -252,7 +252,7 @@ JOIN orders ON clients.id = orders.client_id;
 Приведите получившийся результат и объясните, что значат полученные значения.
 
 ```
-est_db=# EXPLAIN
+test_db=# EXPLAIN
 SELECT clients.фамилия, orders.наименование
 FROM clients
 JOIN orders ON clients.id = orders.client_id;
