@@ -132,6 +132,24 @@ mysql>
 
 ```
 ```
+mysql> SHOW TABLES;
++-------------------+
+| Tables_in_test_db |
++-------------------+
+| orders            |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT COUNT(*) FROM orders WHERE price > 300;
++----------+
+| COUNT(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> 
+
 ```
 
 ## Задача 2
