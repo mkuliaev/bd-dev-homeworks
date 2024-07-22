@@ -169,6 +169,34 @@ mysql>
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES, получите данные по пользователю `test` и 
 **приведите в ответе к задаче**.
 
+```
+
+```
+mysql> CREATE USER 'test'@'%' IDENTIFIED WITH mysql_native_password BY 'test-pass'
+    -> WITH MAX_QUERIES_PER_HOUR 100
+    -> PASSWORD EXPIRE INTERVAL 180 DAY
+    -> FAILED_LOGIN_ATTEMPTS 3
+    -> ATTRIBUTE '{"fname": "James", "lname": "Pretty"}';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> GRANT SELECT ON test_db.* TO 'test'@'%';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER='test';
++------+------+---------------------------------------+
+| USER | HOST | ATTRIBUTE                             |
++------+------+---------------------------------------+
+| test | %    | {"fname": "James", "lname": "Pretty"} |
++------+------+---------------------------------------+
+1 row in set (0.00 sec)
+
+mysql>
+```
+
+
 ## Задача 3
 
 Установите профилирование `SET profiling = 1`.
