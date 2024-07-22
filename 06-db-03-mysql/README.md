@@ -225,6 +225,23 @@ mysql> ALTER TABLE orders ENGINE = MyISAM;
 Query OK, 5 rows affected (0.29 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 
+mysql> ALTER TABLE orders ENGINE = InnoDB;
+Query OK, 5 rows affected (0.56 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SHOW PROFILES;
++----------+------------+---------------------------------------------+
+| Query_ID | Duration   | Query                                       |
++----------+------------+---------------------------------------------+
+|        1 | 0.00540875 | SHOW TABLE STATUS FROM test_db              |
+|        2 | 0.28865025 | ALTER TABLE orders ENGINE = MyISAM          |
+|        3 | 0.55785350 | ALTER TABLE orders ENGINE = InnoDB          |
++----------+------------+---------------------------------------------+
+3 rows in set, 1 warning (0.00 sec)
+
+mysql> \q
+Bye
+
 
 ```
 
