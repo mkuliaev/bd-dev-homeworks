@@ -258,6 +258,31 @@ Bye
 
 Приведите в ответе изменённый файл `my.cnf`.
 
+```
+kuliaev@mysql:~$ docker cp mysql_container:/etc/my.cnf ./my.cnf
+Successfully copied 3.07kB to /home/kuliaev/my.cnf
+kuliaev@mysql:~$ nano /home/kuliaev/my.cnf
+kuliaev@mysql:~$ docker cp ./my.cnf mysql_container:/etc/my.cnf
+Successfully copied 3.07kB to mysql_container:/etc/my.cnf
+kuliaev@mysql:~$  docker restart mysql_container
+mysql_container
+kuliaev@mysql:~$ docker exec -it mysql_container /bin/bash
+bash-5.1# cat /etc/my.cnf
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/8.0/en/server-configuration-defaults.html
+
+[mysqld]
+innodb_flush_log_at_trx_commit = 2
+innodb_doublewrite = 0
+innodb_file_per_table = 1
+innodb_compression_level = 6
+innodb_log_buffer_size = 1M
+innodb_buffer_pool_size = 600M
+innodb_log_file_size = 100M
+
+
+
+```
 ---
 
 
