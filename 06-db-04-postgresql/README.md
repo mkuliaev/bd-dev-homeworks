@@ -104,6 +104,19 @@ COPY 8
 
 ALTER TABLE
 
+test_database=# ANALYZE;
+ANALYZE
+test_database=# SELECT attname, avg_width
+   FROM pg_stats
+   WHERE tablename = 'orders'
+   ORDER BY avg_width DESC
+   LIMIT 1;
+ attname | avg_width 
+---------+-----------
+ title   |        16
+(1 row)
+
+test_database=# 
 
 ```
 
@@ -126,6 +139,11 @@ ALTER TABLE
 Используя утилиту `pg_dump`, создайте бекап БД `test_database`.
 
 Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
+
+```
+
+```
+
 
 ```
 
