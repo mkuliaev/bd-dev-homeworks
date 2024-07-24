@@ -55,17 +55,14 @@
 **Приведите в ответе** команду, которую вы использовали для вычисления, и полученный результат.
 
 ```
-`psql` 
-`kuliaev@postgresql:~$ docker exec -it postgres13 bash`
+
+kuliaev@postgresql:~$ docker exec -it postgres13 bash
 root@455f6eeb6d7e:/# psql -U postgres
 psql (13.15 (Debian 13.15-1.pgdg120+1))
 Type "help" for help.
 
 postgres=# CREATE DATABASE test_database;
 CREATE DATABASE
-postgres=# \q
-root@455f6eeb6d7e:/# exit
-exit
 
 ```
 
