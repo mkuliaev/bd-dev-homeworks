@@ -130,6 +130,13 @@ test_database=#
 Можно ли было изначально исключить ручное разбиение при проектировании таблицы orders?
 
 ```
+test_database=# BEGIN;
+BEGIN
+test_database=*# CREATE TABLE orders_1 AS SELECT * FROM orders WHERE price > 499;
+SELECT 3
+test_database=*# CREATE TABLE orders_2 AS SELECT * FROM orders WHERE price <= 499;
+SELECT 5
+test_database=*# 
 
 ```
 
