@@ -242,5 +242,16 @@ COPY public.orders_price_2_499 (id, title, price) FROM stdin;
 
 
 ```
+CREATE TABLE public.orders_price_1_499 (
+    id integer,
+    title character varying(80) UNIQUE,
+    price integer
+);
+
+CREATE TABLE public.orders_price_2_499 (
+    id integer,
+    title character varying(80) UNIQUE,
+    price integer
+);
 
 ```
