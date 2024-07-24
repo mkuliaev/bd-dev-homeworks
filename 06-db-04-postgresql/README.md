@@ -35,10 +35,7 @@
 
 ``` \q ```
 
-```
 
-
-```
 
 ## Задача 2
 
@@ -58,9 +55,57 @@
 **Приведите в ответе** команду, которую вы использовали для вычисления, и полученный результат.
 
 ```
+kuliaev@postgresql:~$ docker exec -it postgres13 bash
+root@455f6eeb6d7e:/# psql -U postgres
+psql (13.15 (Debian 13.15-1.pgdg120+1))
+Type "help" for help.
+
+postgres=# CREATE DATABASE test_database;
+CREATE DATABASE
+postgres=# \q
+root@455f6eeb6d7e:/# exit
+exit
 
 ```
 
+
+```
+kuliaev@postgresql:~$ docker cp /home/kuliaev/test_dump.sql postgres13:/test_dump.sql
+Successfully copied 4.1kB to postgres13:/test_dump.sql
+kuliaev@postgresql:~$ docker exec -it postgres13 bash
+root@455f6eeb6d7e:/# psql -U postgres -d test_database -f /test_dump.sql
+SET
+SET
+SET
+SET
+SET
+ set_config 
+------------
+ 
+(1 row)
+
+SET
+SET
+SET
+SET
+SET
+SET
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+ALTER TABLE
+COPY 8
+ setval 
+--------
+      8
+(1 row)
+
+ALTER TABLE
+
+
+```
 
 ## Задача 3
 
