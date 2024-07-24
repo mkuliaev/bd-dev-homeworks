@@ -137,6 +137,15 @@ SELECT 3
 test_database=*# CREATE TABLE orders_2 AS SELECT * FROM orders WHERE price <= 499;
 SELECT 5
 test_database=*# 
+test_database=*# DROP TABLE orders;
+DROP TABLE
+test_database=*# ALTER TABLE orders_1 RENAME TO orders_price_gt_499;
+ALTER TABLE
+test_database=*# ALTER TABLE orders_2 RENAME TO orders_price_le_499;
+ALTER TABLE
+test_database=*# COMMIT;
+COMMIT
+test_database-# \q
 
 ```
 
