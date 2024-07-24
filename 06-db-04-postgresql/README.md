@@ -137,9 +137,9 @@ SELECT 5
 test_database=*# 
 test_database=*# DROP TABLE orders;
 DROP TABLE
-test_database=*# ALTER TABLE orders_1 RENAME TO orders_price_gt_499;
+test_database=*# ALTER TABLE orders_1 RENAME TO orders_price_1_499;
 ALTER TABLE
-test_database=*# ALTER TABLE orders_2 RENAME TO orders_price_le_499;
+test_database=*# ALTER TABLE orders_2 RENAME TO orders_price_2_499;
 ALTER TABLE
 test_database=*# COMMIT;
 COMMIT
