@@ -150,7 +150,7 @@ test_database-# \q
 
 
 `В PostgreSQL можно создать партиционированную таблицу`.
-
+https://habr.com/ru/companies/skyeng/articles/583222/
 
 ## Задача 4
 
