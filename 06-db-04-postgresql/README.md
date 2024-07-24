@@ -156,9 +156,87 @@ test_database-# \q
 
 Используя утилиту `pg_dump`, создайте бекап БД `test_database`.
 
+```
+root@455f6eeb6d7e:/# mkdir backup
+root@455f6eeb6d7e:/# pg_dump -U postgres -d test_database -F c -f /backup/test_database_backup.dump
+
+```
+
 Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
 
 ```
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.15 (Debian 13.15-1.pgdg120+1)
+-- Dumped by pg_dump version 13.15 (Debian 13.15-1.pgdg120+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: orders_price_gt_499; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.orders_price_gt_499 (
+    id integer,
+    title character varying(80) UNIQUE,
+    price integer
+);
+
+ALTER TABLE public.orders_price_gt_499 OWNER TO postgres;
+
+--
+-- Name: orders_price_le_499; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.orders_price_le_499 (
+    id integer,
+    title character varying(80) UNIQUE,
+    price integer
+);
+
+ALTER TABLE public.orders_price_le_499 OWNER TO postgres;
+
+--
+-- Data for Name: orders_price_gt_499; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.orders_price_gt_499 (id, title, price) FROM stdin;
+2 My little database 500
+6 WAL never lies 900
+8 Dbiezdmin 501
+\.
+
+--
+-- Data for Name: orders_price_le_499; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.orders_price_le_499 (id, title, price) FROM stdin;
+1 War and peace 100
+3 Adventure psql time 300
+4 Server gravity falls 300
+5 Log gossips 123
+7 Me and my bash-pet 499
+\.
+
+--
+-- PostgreSQL database dump complete
+--
+
 
 ```
 
