@@ -150,7 +150,7 @@ test_database-# \q
 
 
 `При проектировании таблицы можно было использовать партиционирование таблиц.`.
-https://habr.com/ru/companies/skyeng/articles/583222/
+[Партицирование таблиц в PostgreSQL](https://habr.com/ru/companies/skyeng/articles/583222/)
 
 ## Задача 4
 
