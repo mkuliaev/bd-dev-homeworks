@@ -188,44 +188,44 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: orders_price_gt_499; Type: TABLE; Schema: public; Owner: postgres
+-- Name: orders_price_1_499; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.orders_price_gt_499 (
+CREATE TABLE public.orders_price_1_499 (
     id integer,
     title character varying(80) UNIQUE,
     price integer
 );
 
-ALTER TABLE public.orders_price_gt_499 OWNER TO postgres;
+ALTER TABLE public.orders_price_1_499 OWNER TO postgres;
 
 --
--- Name: orders_price_le_499; Type: TABLE; Schema: public; Owner: postgres
+-- Name: orders_price_2_499; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.orders_price_le_499 (
+CREATE TABLE public.orders_price_2_499 (
     id integer,
     title character varying(80) UNIQUE,
     price integer
 );
 
-ALTER TABLE public.orders_price_le_499 OWNER TO postgres;
+ALTER TABLE public.orders_price_2_499 OWNER TO postgres;
 
 --
--- Data for Name: orders_price_gt_499; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: orders_price_1_499; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.orders_price_gt_499 (id, title, price) FROM stdin;
+COPY public.orders_price_1_499 (id, title, price) FROM stdin;
 2 My little database 500
 6 WAL never lies 900
 8 Dbiezdmin 501
 \.
 
 --
--- Data for Name: orders_price_le_499; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: orders_price_2_499; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.orders_price_le_499 (id, title, price) FROM stdin;
+COPY public.orders_price_2_499 (id, title, price) FROM stdin;
 1 War and peace 100
 3 Adventure psql time 300
 4 Server gravity falls 300
