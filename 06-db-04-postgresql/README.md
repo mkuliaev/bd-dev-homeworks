@@ -55,7 +55,8 @@
 **Приведите в ответе** команду, которую вы использовали для вычисления, и полученный результат.
 
 ```
-kuliaev@postgresql:~$ docker exec -it postgres13 bash
+`psql` 
+`kuliaev@postgresql:~$ docker exec -it postgres13 bash`
 root@455f6eeb6d7e:/# psql -U postgres
 psql (13.15 (Debian 13.15-1.pgdg120+1))
 Type "help" for help.
