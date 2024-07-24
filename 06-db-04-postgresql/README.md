@@ -103,6 +103,9 @@ COPY 8
 (1 row)
 
 ALTER TABLE
+root@455f6eeb6d7e:/# psql -U postgres -d test_database
+psql (13.15 (Debian 13.15-1.pgdg120+1))
+Type "help" for help.
 
 test_database=# ANALYZE;
 ANALYZE
@@ -116,8 +119,7 @@ test_database=# SELECT attname, avg_width
  title   |        16
 (1 row)
 
-test_database=# 
-
+test_database=#
 ```
 
 ## Задача 3
